@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="ENCODING" value="UTF-8" />
+    <property name="LOG_LEVEL" value="DEBUG" />
+    <include
+            resource="org/springframework/boot/logging/logback/base.xml" />
+    <springProperty scope="context" name="appName"
+                    source="spring.application.name" />
+
+    <include
+            resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include
+            resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <Target>${user-system}.out</Target>
+        <encoder
+                class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp": "%date{dd-MM-yyyy'T'HH:mm:ss.SSS,UTC-6}",
+                        "log.level": "%level",
+                        "thread": "%thread",
+                        "logger": "%logger",
+                        "message": "%message",
+                        "host": "${HOSTNAME}"
+                        }
+                    </pattern>
+                </pattern>
+                <stackTrace>
+                    <throwableConverter
+                            class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <rootCauseFirst>true</rootCauseFirst>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+        </encoder>
+    </appender>
+
+    <logger
+            name="org.springframework.web.filter.CommonsRequestLoggingFilter"
+            level="DEBUG" />
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

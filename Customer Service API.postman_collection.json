@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "20c4d8b3-bb6b-4de3-91d0-19863b966ec1",
+		"name": "Customer Service API",
+		"description": "Customer API documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12093733"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "balance",
+					"item": [
+						{
+							"name": "{customerId}",
+							"item": [
+								{
+									"name": "subtract",
+									"item": [
+										{
+											"name": "subtract Balance",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/balance/:customerId/subtract?amount=<number>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"balance",
+														":customerId",
+														"subtract"
+													],
+													"query": [
+														{
+															"key": "amount",
+															"value": "<number>",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "customerId",
+															"value": "<long>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/api/balance/:customerId/subtract?amount=<number>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"balance",
+																":customerId",
+																"subtract"
+															],
+															"query": [
+																{
+																	"key": "amount",
+																	"value": "<number>",
+																	"description": "(Required) "
+																}
+															],
+															"variable": [
+																{
+																	"key": "customerId"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "<string>"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "get All Customers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/customers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/customers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"customers"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"balance\": \"<number>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"balance\": \"<number>\"\n  }\n]"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/customer"
+		}
+	]
+}
